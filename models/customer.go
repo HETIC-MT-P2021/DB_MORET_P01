@@ -1,21 +1,12 @@
 package models
 
+
 import (
-	"database/sql"
+	_ "database/sql"
 	_ "fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 )
-
-func ConnectDB() *sql.DB {
-
-	db, err := sql.Open("mysql", "root:grisouille/classicmodels")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	return db
-}
 
 type Customer struct {
 	CustomerNumber int `json:"customerNumber"`
@@ -25,8 +16,8 @@ type Customer struct {
 func GetCustomer(customerId int) Customer {
 	var customer Customer
 
-	db := ConnectDB()
-	rows, err := db.Query("SELECT c.customerName," +
+	ConnectDB()
+	rows, err := DB.Query("SELECT c.customerName," +
 		"c.contactFirstName," +
 		"c.contactLastName," +
 		"c.addressLine1," +

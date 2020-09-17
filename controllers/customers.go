@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func GetCustomer(w http.ResponseWriter, r http.Request) {
+func GetCustomer(w http.ResponseWriter, r *http.Request) {
 	customerId := 119
 	customer := models.GetCustomer(customerId)
 
