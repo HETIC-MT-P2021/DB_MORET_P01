@@ -1,0 +1,60 @@
+package models
+
+import (
+	"database/sql"
+	_ "fmt"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
+)
+
+func ConnectDB() *sql.DB {
+
+	db, err := sql.Open("mysql", "root:grisouille/classicmodels")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return db
+}
+
+type Customer struct {
+	CustomerNumber int `json:"customerNumber"`
+	CustomerName string `json:"customerName"`
+}
+
+func GetCustomer(customerId int) Customer {
+	var customer Customer
+
+	db := ConnectDB()
+	rows, err := db.Query("SELECT c.customerName," +
+		"c.contactFirstName," +
+		"c.contactLastName," +
+		"c.addressLine1," +
+		"c.addressLine2," +
+		"c.city," +
+		"c.postalCode," +
+		"c.country," +
+		"c.phone" +
+		"FROM customers AS c" +
+		"WHERE c.customerNumber = 119;")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+	for rows.Next() {
+		err := rows.Scan(&customer.CustomerNumber, &customer.CustomerName)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		log.Println(customer)
+	}
+
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return customer
+}
