@@ -7,8 +7,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var UserDb = "root"
-var PassDb = "grisouille"
+var UserDb = "xxx"
+var PassDb = "xxx"
 var IpDb = "db:3306"
 var NameDb = "classicmodels"
 
