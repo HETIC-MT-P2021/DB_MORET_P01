@@ -2,7 +2,7 @@
 
 Exercise to build a GoLang API with some employees and offices datas
 
-## Install
+## Install and run project
 
 ```bash
 go build
