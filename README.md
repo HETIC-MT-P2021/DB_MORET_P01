@@ -2,7 +2,10 @@
 
 Exercise to build a GoLang API with some employees and offices datas
 
-## Install and run project
+## Installation
+
+The project requires Golang v1.14
+Install the dependencies and start the server.
 
 ```bash
 go build
